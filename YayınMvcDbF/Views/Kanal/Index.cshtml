@@ -1,0 +1,40 @@
+﻿@using YayınMvcDbF.Models.EntityFramework
+@model List<kanalSet>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>Kanal No</th>
+        <th>Kanal Adı</th>
+        <th>Kanal Ciro</th>
+        <th>Kanal Adres</th>
+        <th>Kanal Reyting</th>
+        <th>Kanal Yayın Id</th>
+        <th>İşlemler</th>
+    </tr>
+    <tbody>
+        @foreach (var knl in Model)
+        {
+        <tr>
+            <td>@knl.KanaIno</td>
+            <td>@knl.kanaladi</td>
+            <td>@knl.ciro</td>
+            <td>@knl.adres</td>
+            <td>@knl.reyting</td>
+            <td>@knl.yayınId</td>
+            <td>
+                <a href="/Kanal/Sil/@knl.KanaIno" class="btn btn-danger">Sil</a>
+                <a href="/Kanal/GuncellemekicinGetır/@knl.KanaIno" class="btn btn-success">Güncelle</a>
+            </td>
+
+        </tr>
+        }
+    </tbody>
+</table>
+<div style="margin-top:10px">
+    <a href="/Kanal/YenıKanal" class="btn btn-primary">Yeni Kanal Kaydı</a>
+</div>
+

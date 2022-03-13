@@ -1,0 +1,35 @@
+﻿@model YayınMvcDbF.Models.EntityFramework.kanalSet
+@{
+    ViewBag.Title = "YenıKanal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post" class="form-group">
+    <div>
+        <label>Kanal Adı</label>
+        <input type="text" class="form-control" name="kanaladi" />
+
+        <label>Kanal Ciro</label>
+        <input type="text" class="form-control" name="ciro" />
+
+        <label>Kanal Adres</label>
+        <input type="text" class="form-control" name="adres" />
+
+        <label>Kanal Reyting</label>
+        <input type="text" class="form-control" name="reyting" />
+
+        <label>Kanal Yayın Id</label>
+
+
+
+        @Html.DropDownListFor(m=>m.yayinSet.Id,(List<SelectListItem>)ViewBag.dgr,new { @class="form-control"})
+
+@*<input type="text" class="form-Scontrol" name="yayınId" />*@  @*DROPDOWN LİSTE ÇEVİRDİK*@
+
+
+    </div>
+    <div style="margin-top:10px">
+        <button class="btn btn-info">Kanal Ekle</button>
+    </div>
+</form>
+

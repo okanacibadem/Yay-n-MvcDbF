@@ -1,0 +1,33 @@
+﻿@model YayınMvcDbF.Models.EntityFramework.sorumluSet
+@{
+    ViewBag.Title = "YenıSorumlu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post" class="form-group">
+    <div>
+        <label>Sorumlu Ad Soyad</label>
+        <input type="text" " class="form-control" name="asoyad" />
+
+        <label>Sorumlu Görevi</label>
+        <input type="text" class="form-control" name="gorevi" />
+
+        <label>Sorumlu Maaş</label>
+        <input type="text" class="form-control" name="maas" />
+
+        <label>Sorumlu Görev Sayısı</label>
+        <input type="text" class="form-control" name="gorevsayisi" />
+
+        <label>Sorumlu Yayın Id</label>
+        @Html.DropDownListFor(m => m.yayinSet.Id, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+
+
+
+
+
+    </div>
+    <div style="margin-top:10px">
+        <button class="btn btn-info">Sorumlu Ekle</button>
+    </div>
+</form>
+

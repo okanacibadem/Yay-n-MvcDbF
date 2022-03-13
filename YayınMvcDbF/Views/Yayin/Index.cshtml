@@ -1,0 +1,31 @@
+﻿@using YayınMvcDbF.Models.EntityFramework
+@model List<yayinSet>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>Yayın ID</th>
+        <th>Yayın Adı</th>
+        <th>Yayın Tarih</th>
+        <th>Yayın Reyting</th>
+        <th>İşlemler</th>
+    </tr>
+    <tbody>
+        @foreach (var yayınItem in Model)
+        {
+            <tr>
+                <td>@yayınItem.Id</td>
+                <td>@yayınItem.yayinadi</td>
+                <td>@yayınItem.yayıntarih</td>
+                <td>@yayınItem.reyting</td>
+                <td><a href="/Yayin/Sil/@yayınItem.Id" class="btn btn-danger">Sil</a>
+                <a href="/Yayin/GuncellemekicinGetır/@yayınItem.Id" class="btn btn-success">Güncelle</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="/Yayin/Eklemesayfa" class="btn btn-primary">Yeni Yayın Kaydı</a>
+

@@ -1,0 +1,45 @@
+﻿@model YayınMvcDbF.Models.EntityFramework.kanalSet
+@{
+    ViewBag.Title = "GuncellemekicinGetır";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>GuncellemekicinGetır</h2>
+
+@using (Html.BeginForm("Guncelle", "Kanal", FormMethod.Post))
+{
+    <div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.kanaladi)
+            @Html.TextBoxFor(m => m.kanaladi, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(m => m.ciro)
+            @Html.TextBoxFor(m => m.ciro, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(m => m.adres)
+            @Html.TextBoxFor(m => m.adres, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(m => m.reyting)
+            @Html.TextBoxFor(m => m.reyting, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(m => m.yayınId)
+            @Html.TextBoxFor(m => m.yayınId, new { @class = "form-control" })
+        </div>
+        @Html.HiddenFor(m => m.KanaIno)
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info">Güncelle</button>
+    </div>
+}

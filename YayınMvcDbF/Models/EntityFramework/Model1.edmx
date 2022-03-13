@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="YayınModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="kanalSet">
+          <Key>
+            <PropertyRef Name="KanaIno" />
+          </Key>
+          <Property Name="KanaIno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kanaladi" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ciro" Type="int" Nullable="false" />
+          <Property Name="adres" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="reyting" Type="int" Nullable="false" />
+          <Property Name="yayınId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sorumluSet">
+          <Key>
+            <PropertyRef Name="sorumluno" />
+          </Key>
+          <Property Name="sorumluno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="asoyad" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="gorevi" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="maas" Type="int" Nullable="false" />
+          <Property Name="gorevsayisi" Type="int" Nullable="false" />
+          <Property Name="yayınıdSorumlu" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="yayinSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="yayinadi" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="yayıntarih" Type="datetime" Nullable="false" />
+          <Property Name="reyting" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_kanalSet_yayinSet">
+          <End Role="yayinSet" Type="Self.yayinSet" Multiplicity="1" />
+          <End Role="kanalSet" Type="Self.kanalSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="yayinSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="kanalSet">
+              <PropertyRef Name="yayınId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sorumluSet_yayinSet">
+          <End Role="yayinSet" Type="Self.yayinSet" Multiplicity="1" />
+          <End Role="sorumluSet" Type="Self.sorumluSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="yayinSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="sorumluSet">
+              <PropertyRef Name="yayınıdSorumlu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="YayınModelStoreContainer">
+          <EntitySet Name="kanalSet" EntityType="Self.kanalSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sorumluSet" EntityType="Self.sorumluSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="yayinSet" EntityType="Self.yayinSet" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_kanalSet_yayinSet" Association="Self.FK_kanalSet_yayinSet">
+            <End Role="yayinSet" EntitySet="yayinSet" />
+            <End Role="kanalSet" EntitySet="kanalSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sorumluSet_yayinSet" Association="Self.FK_sorumluSet_yayinSet">
+            <End Role="yayinSet" EntitySet="yayinSet" />
+            <End Role="sorumluSet" EntitySet="sorumluSet" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="YayınModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="kanalSet">
+          <Key>
+            <PropertyRef Name="KanaIno" />
+          </Key>
+          <Property Name="KanaIno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kanaladi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ciro" Type="Int32" Nullable="false" />
+          <Property Name="adres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="reyting" Type="Int32" Nullable="false" />
+          <Property Name="yayınId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="yayinSet" Relationship="YayınModel.FK_kanalSet_yayinSet" FromRole="kanalSet" ToRole="yayinSet" />
+        </EntityType>
+        <EntityType Name="sorumluSet">
+          <Key>
+            <PropertyRef Name="sorumluno" />
+          </Key>
+          <Property Name="sorumluno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="asoyad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="gorevi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="maas" Type="Int32" Nullable="false" />
+          <Property Name="gorevsayisi" Type="Int32" Nullable="false" />
+          <Property Name="yayınıdSorumlu" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="yayinSet" Relationship="YayınModel.FK_sorumluSet_yayinSet" FromRole="sorumluSet" ToRole="yayinSet" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="yayinSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="yayinadi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="yayıntarih" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="reyting" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="kanalSet" Relationship="YayınModel.FK_kanalSet_yayinSet" FromRole="yayinSet" ToRole="kanalSet" />
+          <NavigationProperty Name="sorumluSet" Relationship="YayınModel.FK_sorumluSet_yayinSet" FromRole="yayinSet" ToRole="sorumluSet" />
+        </EntityType>
+        <EntityContainer Name="YayınEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="kanalSet" EntityType="Self.kanalSet" />
+          <EntitySet Name="sorumluSet" EntityType="Self.sorumluSet" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="yayinSet" EntityType="Self.yayinSet" />
+          <AssociationSet Name="FK_kanalSet_yayinSet" Association="YayınModel.FK_kanalSet_yayinSet">
+            <End Role="yayinSet" EntitySet="yayinSet" />
+            <End Role="kanalSet" EntitySet="kanalSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sorumluSet_yayinSet" Association="YayınModel.FK_sorumluSet_yayinSet">
+            <End Role="yayinSet" EntitySet="yayinSet" />
+            <End Role="sorumluSet" EntitySet="sorumluSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_kanalSet_yayinSet">
+          <End Type="YayınModel.yayinSet" Role="yayinSet" Multiplicity="1" />
+          <End Type="YayınModel.kanalSet" Role="kanalSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="yayinSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="kanalSet">
+              <PropertyRef Name="yayınId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sorumluSet_yayinSet">
+          <End Type="YayınModel.yayinSet" Role="yayinSet" Multiplicity="1" />
+          <End Type="YayınModel.sorumluSet" Role="sorumluSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="yayinSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="sorumluSet">
+              <PropertyRef Name="yayınıdSorumlu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="YayınModelStoreContainer" CdmEntityContainer="YayınEntities">
+          <EntitySetMapping Name="kanalSet">
+            <EntityTypeMapping TypeName="YayınModel.kanalSet">
+              <MappingFragment StoreEntitySet="kanalSet">
+                <ScalarProperty Name="KanaIno" ColumnName="KanaIno" />
+                <ScalarProperty Name="kanaladi" ColumnName="kanaladi" />
+                <ScalarProperty Name="ciro" ColumnName="ciro" />
+                <ScalarProperty Name="adres" ColumnName="adres" />
+                <ScalarProperty Name="reyting" ColumnName="reyting" />
+                <ScalarProperty Name="yayınId" ColumnName="yayınId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sorumluSet">
+            <EntityTypeMapping TypeName="YayınModel.sorumluSet">
+              <MappingFragment StoreEntitySet="sorumluSet">
+                <ScalarProperty Name="sorumluno" ColumnName="sorumluno" />
+                <ScalarProperty Name="asoyad" ColumnName="asoyad" />
+                <ScalarProperty Name="gorevi" ColumnName="gorevi" />
+                <ScalarProperty Name="maas" ColumnName="maas" />
+                <ScalarProperty Name="gorevsayisi" ColumnName="gorevsayisi" />
+                <ScalarProperty Name="yayınıdSorumlu" ColumnName="yayınıdSorumlu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="YayınModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="yayinSet">
+            <EntityTypeMapping TypeName="YayınModel.yayinSet">
+              <MappingFragment StoreEntitySet="yayinSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="yayinadi" ColumnName="yayinadi" />
+                <ScalarProperty Name="yayıntarih" ColumnName="yayıntarih" />
+                <ScalarProperty Name="reyting" ColumnName="reyting" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

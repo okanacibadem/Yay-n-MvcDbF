@@ -1,0 +1,27 @@
+﻿@model YayınMvcDbF.Models.EntityFramework.yayinSet
+@{
+    ViewBag.Title = "GuncellemekicinGetır";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>GuncellemekicinGetır</h2>
+
+@using (Html.BeginForm("Guncelle", "Yayin", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.yayinadi)
+        @Html.TextBoxFor(m => m.yayinadi, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.yayıntarih)
+        @Html.TextBoxFor(m => m.yayıntarih, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.reyting)
+        @Html.TextBoxFor(m => m.reyting, new { @class = "form-control" })
+    </div>
+    @Html.HiddenFor(m => m.Id)
+    <div style="margin-top:15px">
+        <button class="btn btn-info">Güncelle</button>
+    </div>
+}

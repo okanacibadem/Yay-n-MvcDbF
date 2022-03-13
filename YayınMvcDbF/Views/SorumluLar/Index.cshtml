@@ -1,0 +1,41 @@
+﻿@using YayınMvcDbF.Models.EntityFramework
+@model List<sorumluSet>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<table class="table table-bordered">
+    <tr>
+        <th>Sorumlu No</th>
+        <th>Sorumlu Adı</th>
+        <th>Sorumlu Görevi</th>
+        <th>Sorumlu Maas</th>
+        <th>Sorumlu Görev Sayısı</th>
+        <th>Sorumlu Yayın Id</th>
+        <th>İşlemler</th>
+    </tr>
+    <tbody>
+        @foreach (var knl in Model)
+        {
+            <tr>
+                <td>@knl.sorumluno</td>
+                <td>@knl.asoyad</td>
+                <td>@knl.gorevi</td>
+                <td>@knl.maas</td>
+                <td>@knl.gorevsayisi</td>
+                <td>@knl.yayınıdSorumlu</td>
+                <td>
+                    <a href="/Sorumlular/Sil/@knl.sorumluno" class="btn btn-danger">Sil</a>
+                    <a href="/Sorumlular/GuncellemekicinGetır/@knl.sorumluno" class="btn btn-success">Güncelle</a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+<div style="margin-top:10px">
+    <a href="/Sorumlular/YenıSorumlu" class="btn btn-primary">Yeni Sorumlu Kaydı</a>
+</div>
+

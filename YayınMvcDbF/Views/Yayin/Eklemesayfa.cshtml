@@ -1,0 +1,32 @@
+﻿
+
+
+@{
+    ViewBag.Title = "Eklemesayfa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eklemesayfa</h2>
+
+
+<form method="post" class="form-group">
+    <div>
+        <label>Yayın Adı</label>
+        <input type="text" " class="form-control" name="yayinadi" />
+
+        <label>Yayın Tarihi</label>
+        <input type="datetime" class="form-control" name="yayıntarih" />
+
+        <label>Yayın Reyting</label>
+        <input type="text" class="form-control" name="reyting" />
+
+
+    <div style="margin-top:10px">
+        <button class="btn btn-info">Yayın Ekle</button>
+    </div>
+</form>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

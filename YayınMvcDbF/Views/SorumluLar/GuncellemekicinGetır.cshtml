@@ -1,0 +1,42 @@
+﻿@model YayınMvcDbF.Models.EntityFramework.sorumluSet
+@{
+    ViewBag.Title = "GuncellemekicinGetır";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>GuncellemekicinGetır</h2>
+
+@using (Html.BeginForm("Guncelle", "Sorumlular", FormMethod.Post))
+{
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.asoyad)
+        @Html.TextBoxFor(m => m.asoyad, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+
+        @Html.LabelFor(m => m.gorevi)
+        @Html.TextBoxFor(m => m.gorevi, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.maas)
+        @Html.TextBoxFor(m => m.maas, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.gorevsayisi)
+        @Html.TextBoxFor(m => m.gorevsayisi, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+
+        @Html.LabelFor(m => m.yayınıdSorumlu)
+        @Html.TextBoxFor(m => m.yayınıdSorumlu, new { @class = "form-control" })
+    </div>
+    @Html.HiddenFor(m => m.sorumluno)
+    <div style="margin-top:15px">
+        <button class="btn btn-info">Güncelle</button>
+    </div>
+}
